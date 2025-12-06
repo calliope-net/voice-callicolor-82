@@ -1,0 +1,27 @@
+{
+    "name": "voice-callicolor-82",
+    "version": "0.1.1",
+    "dependencies": {
+        "core": "*",
+        "matrix": "github:calliope-net/matrix#v1.0.1",
+        "pins": "github:calliope-net/pins#v1.5.0",
+        "v2": "*",
+        "pxt-callicolor": "github:mkleinsb/pxt-callicolor#v0.3.4"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "8.1.7",
+        "targetId": "calliopemini"
+    },
+    "supportedTargets": [
+        "calliopemini"
+    ],
+    "preferredEditor": "blocksprj"
+}
