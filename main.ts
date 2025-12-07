@@ -80,6 +80,7 @@ if (connected) {
 } else {
     basic.setLedColor(0xff0000)
 }
+Zeile1_7("DFRobot Gravity I2C Offline Language Learning Voice Recognition Sensor mit OLED Display, calliope-net/pins, calliope-net/matrix")
 basic.forever(function () {
     if (connected) {
         Kommando_ID = pins.voice_read_cmdid()
