@@ -1,6 +1,6 @@
 {
     "name": "voice-callicolor-82",
-    "version": "0.1.1",
+    "version": "0.0.1",
     "dependencies": {
         "core": "*",
         "matrix": "github:calliope-net/matrix#v1.0.1",
