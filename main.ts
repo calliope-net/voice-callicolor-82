@@ -1,24 +1,24 @@
 function macheEtwas (id: number) {
-    if (id == 45) {
+    if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W45)) {
         basic.clearScreen()
-    } else if (id >= 52 && id <= 61) {
+    } else if (id >= pins.voice_command_enum(pins.voice_FixedCommandWords.W52) && id <= pins.voice_command_enum(pins.voice_FixedCommandWords.W61)) {
         pins.comment(pins.pins_text("Display number 0-9"))
         basic.showNumber(id - 52)
-    } else if (id == 62) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W62)) {
         basic.showIcon(IconNames.Happy)
-    } else if (id == 63) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W63)) {
         basic.showIcon(IconNames.Sad)
-    } else if (id == 64) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W64)) {
         basic.showIcon(IconNames.Heart)
-    } else if (id == 65) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W65)) {
         basic.clearScreen()
-    } else if (id == 69) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W69)) {
         basic.showNumber(input.temperature())
-    } else if (id == 82) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W82)) {
         control.reset()
-    } else if (id == 116) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W116)) {
         basic.setLedColor(0xff0000)
-    } else if (id == 123) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W123)) {
         basic.setLedColor(0xffffff)
     } else {
         basic.turnRgbLedOff()
@@ -84,7 +84,7 @@ Zeile1_7("DFRobot Gravity I2C Offline Language Learning Voice Recognition Sensor
 basic.forever(function () {
     if (connected) {
         Kommando_ID = pins.voice_read_cmdid()
-        if (Kommando_ID == 0) {
+        if (Kommando_ID == pins.voice_command_enum(pins.voice_FixedCommandWords.W0)) {
             basic.pause(2000)
         } else {
             Zeile0(Kommando_ID)
