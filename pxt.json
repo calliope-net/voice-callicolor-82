@@ -6,8 +6,7 @@
         "matrix": "github:calliope-net/matrix#v1.0.1",
         "pins": "github:calliope-net/pins#v1.5.0",
         "v2": "*",
-        "pxt-callicolor": "github:mkleinsb/pxt-callicolor#v0.3.4",
-        "bt0": "github:calliope-net/bt0#v0.0.1"
+        "pxt-callicolor": "github:mkleinsb/pxt-callicolor#v0.3.4"
     },
     "files": [
         "main.blocks",
