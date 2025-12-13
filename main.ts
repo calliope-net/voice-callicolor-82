@@ -90,7 +90,7 @@ basic.forever(function () {
             Zeile0(Kommando_ID)
             macheEtwas(Kommando_ID)
             callicolor(Kommando_ID)
-            Zeile1_7(pins.voice_command_text(Kommando_ID))
+            Zeile1_7(pins.voice_command_text_eeprom(Kommando_ID))
         }
     }
 })
