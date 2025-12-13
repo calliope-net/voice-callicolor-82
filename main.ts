@@ -17,7 +17,7 @@ function macheEtwas (id: number) {
     } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W82)) {
         control.reset()
     } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W116)) {
-        basic.setLedColor(0xff0000)
+    	
     } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W123)) {
         basic.setLedColor(0xffffff)
     } else {
@@ -47,24 +47,22 @@ function Zeile0 (zahl: number) {
     matrix.displayMatrix(0, 0, matrix.eI2C.I2C_x3C)
 }
 function callicolor (id: number) {
-    if (id == 116) {
+    if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W116)) {
         CalliColor.showCalliColor(0xff0000)
-    } else if (id == 117) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W117)) {
         CalliColor.showCalliColor(0xffaa00)
-    } else if (id == 118) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W118)) {
         CalliColor.showCalliColor(0xffff00)
-    } else if (id == 119) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W119)) {
         CalliColor.showCalliColor(0x00ff00)
-    } else if (id == 120) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W120)) {
         CalliColor.showCalliColor(0x00ffff)
-    } else if (id == 121) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W121)) {
         CalliColor.showCalliColor(0x0000ff)
-    } else if (id == 122) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W122)) {
         CalliColor.showCalliColor(0xff00ff)
-    } else if (id == 123) {
+    } else if (id == pins.voice_command_enum(pins.voice_FixedCommandWords.W123)) {
         CalliColor.showCalliColor(0xffffff)
-    } else {
-        CalliColor.showCalliColor(0x000000)
     }
 }
 let Kommando_ID = 0
