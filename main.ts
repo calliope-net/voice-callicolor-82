@@ -96,6 +96,7 @@ function zeigeUhr () {
 }
 let voice_timeout = 0
 let Kommando_ID = 0
+let sekunden_takt = 0
 let sekunden_farbe = 0
 let sekunden_pixel = 0
 let zeilen = 0
@@ -112,12 +113,13 @@ if (voice_connected) {
 }
 basic.forever(function () {
     if (voice_connected) {
+        sekunden_takt = input.runningTime()
         Kommando_ID = pins.voice_read_cmdid()
         if (Kommando_ID == pins.voice_command_enum(pins.voice_FixedCommandWords.W0)) {
             if (input.runningTime() > voice_timeout) {
                 zeigeUhr()
+                basic.pause(1000 - (input.runningTime() - sekunden_takt))
             }
-            basic.pause(200)
         } else {
             voice_timeout = input.runningTime() + wachzeit * 1000
             Zeile0(Kommando_ID)
