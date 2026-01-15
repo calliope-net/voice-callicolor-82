@@ -67,7 +67,10 @@ function callicolor (id: number) {
 function zeigeUhr () {
     pins.rtc_read()
     matrix.clearMatrix()
-    matrix.writeClock(32, 32, 32, pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Stunde)), pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Minute)))
+    matrix.writeClock(96, 32, 32, pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Stunde)), pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Minute)))
+    matrix.writeTextEEPROM(0, 0, pins.rtc_get_string(pins.rtc_eFormat.mmss), 10, 8, matrix.eTransparent.t, matrix.matrix_eFaktor(matrix.eFaktor.f2), matrix.matrix_eFaktor(matrix.eFaktor.f2))
+    matrix.writeTextEEPROM(1, 0, pins.rtc_get_string(pins.rtc_eFormat.ddd))
+    matrix.writeTextEEPROM(7, 0, pins.rtc_get_string(pins.rtc_eFormat.ddMMyy))
     matrix.displayMatrix()
     pins.rtc_25led(pins.rtc_e25led.Zeit)
 }
@@ -84,7 +87,6 @@ if (voice_connected) {
 } else {
     basic.setLedColor(0xff0000)
 }
-Zeile1_7("DFRobot Gravity I2C Offline Language Learning Voice Recognition Sensor mit OLED Display, calliope-net/pins, calliope-net/matrix")
 basic.forever(function () {
     if (voice_connected) {
         Kommando_ID = pins.voice_read_cmdid()
