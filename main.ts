@@ -36,7 +36,7 @@ function Zeile1_7 (text: string) {
     matrix.clearMatrix(1, 7)
     zeilen = Math.trunc(text.length / 16)
     for (let Index = 0; Index <= zeilen; Index++) {
-        matrix.writeTextEEPROM(Index + 1, 0, matrix.matrix_text(text.substr(Index * 16, 16)))
+        matrix.writeTextEEPROM(Index + 1, 0, matrix.matrix_text(text.substr(0 * 16, 16)))
     }
     matrix.displayMatrix(1, 7, matrix.eI2C.I2C_x3C)
 }
@@ -75,11 +75,29 @@ function zeigeUhr () {
     matrix.writeTextEEPROM(4, 0, pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Stunde)), 16, 0, matrix.eTransparent.t, matrix.matrix_eFaktor(matrix.eFaktor.f3), matrix.matrix_eFaktor(matrix.eFaktor.f1))
     matrix.writeTextEEPROM(6, 0, pins.rtc_get_string(pins.rtc_eFormat.ddd))
     matrix.writeTextEEPROM(7, 0, pins.rtc_get_string(pins.rtc_eFormat.ddMMyy))
+    sekunden_pixel = Math.trunc(pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Sekunde)) / 5)
+    matrix.writeTextEEPROM(5, 0, sekunden_pixel)
     matrix.displayMatrix()
     pins.rtc_25led(pins.rtc_e25led.Zeit)
+    sekunden_farbe = pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Sekunde)) % 5
+    if (sekunden_farbe == 0) {
+        CalliColor.ShowColorOnPixelbright(CalliColor.CalliColor(NeoPixelColors.Red), sekunden_pixel)
+    } else if (sekunden_farbe == 1) {
+        CalliColor.ShowColorOnPixelbright(CalliColor.CalliColor(NeoPixelColors.Green), sekunden_pixel)
+    } else if (sekunden_farbe == 2) {
+        CalliColor.ShowColorOnPixelbright(CalliColor.CalliColor(NeoPixelColors.Blue), sekunden_pixel)
+    } else if (sekunden_farbe == 3) {
+        CalliColor.ShowColorOnPixelbright(CalliColor.CalliColor(NeoPixelColors.Yellow), sekunden_pixel)
+    } else if (sekunden_farbe == 4) {
+        CalliColor.ShowColorOnPixelbright(CalliColor.CalliColor(NeoPixelColors.Black), sekunden_pixel)
+    } else {
+        CalliColor.ShowColorOnPixelbright(CalliColor.CalliColor(NeoPixelColors.White), sekunden_pixel)
+    }
 }
 let voice_timeout = 0
 let Kommando_ID = 0
+let sekunden_farbe = 0
+let sekunden_pixel = 0
 let zeilen = 0
 matrix.init(matrix.ePages.y64)
 matrix.displayMatrix()
@@ -99,7 +117,7 @@ basic.forever(function () {
             if (input.runningTime() > voice_timeout) {
                 zeigeUhr()
             }
-            basic.pause(1000)
+            basic.pause(200)
         } else {
             voice_timeout = input.runningTime() + wachzeit * 1000
             Zeile0(Kommando_ID)
