@@ -4,7 +4,7 @@
     "dependencies": {
         "core": "*",
         "matrix": "github:calliope-net/matrix#v1.0.1",
-        "pins": "github:calliope-net/pins#v1.5.4",
+        "pins": "github:calliope-net/pins#v1.5.5",
         "v2": "*",
         "pxt-callicolor": "github:mkleinsb/pxt-callicolor#v0.3.4"
     },

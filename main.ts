@@ -26,10 +26,9 @@ function macheEtwas (id: number) {
 }
 function GitHub () {
     pins.comment(pins.pins_text("calliope-net/voice-callicolor-82"))
-    pins.comment(pins.pins_text("CalliColor, I2C: Voice, OLED, EEPROM"))
-    pins.comment(pins.pins_text("3 Erweiterungen laden:"))
+    pins.comment(pins.pins_text("4 Module: CalliColor, I2C: Voice, OLED, EEPROM"))
+    pins.comment(pins.pins_text("3 Erweiterungen laden: mkleinsb/pxt-callicolor;"))
     pins.comment(pins.pins_text("calliope-net/pins; calliope-net/matrix"))
-    pins.comment(pins.pins_text("mkleinsb/pxt-callicolor"))
     pins.comment(pins.pins_text("Anleitung:"))
     pins.comment(pins.pins_text("elssner.github.io/ft-Controller-I2C/voice_konsole/"))
 }
@@ -65,6 +64,13 @@ function callicolor (id: number) {
         CalliColor.showCalliColor(0xffffff)
     }
 }
+function zeigeUhr () {
+    pins.rtc_read()
+    matrix.clearMatrix()
+    matrix.writeClock(32, 32, 32, pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Stunde)), pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Minute)))
+    matrix.displayMatrix()
+    pins.rtc_25led(pins.rtc_e25led.Zeit)
+}
 let Kommando_ID = 0
 let zeilen = 0
 matrix.init(matrix.ePages.y64)
@@ -72,18 +78,19 @@ matrix.displayMatrix()
 basic.pause(2000)
 let wachzeit = pins.voice_register(pins.pins_voice_eRegister(pins.voice_eRegister.WAKE_TIME))
 Zeile0(wachzeit)
-let connected = wachzeit > 0
-if (connected) {
+let voice_connected = wachzeit > 0
+if (voice_connected) {
     basic.setLedColor(0x00ff00)
 } else {
     basic.setLedColor(0xff0000)
 }
 Zeile1_7("DFRobot Gravity I2C Offline Language Learning Voice Recognition Sensor mit OLED Display, calliope-net/pins, calliope-net/matrix")
 basic.forever(function () {
-    if (connected) {
+    if (voice_connected) {
         Kommando_ID = pins.voice_read_cmdid()
         if (Kommando_ID == pins.voice_command_enum(pins.voice_FixedCommandWords.W0)) {
-            basic.pause(2000)
+            zeigeUhr()
+            basic.pause(1000)
         } else {
             Zeile0(Kommando_ID)
             macheEtwas(Kommando_ID)
