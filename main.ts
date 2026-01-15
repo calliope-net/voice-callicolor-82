@@ -78,6 +78,7 @@ function zeigeUhr () {
     matrix.displayMatrix()
     pins.rtc_25led(pins.rtc_e25led.Zeit)
 }
+let voice_timeout = 0
 let Kommando_ID = 0
 let zeilen = 0
 matrix.init(matrix.ePages.y64)
@@ -95,9 +96,12 @@ basic.forever(function () {
     if (voice_connected) {
         Kommando_ID = pins.voice_read_cmdid()
         if (Kommando_ID == pins.voice_command_enum(pins.voice_FixedCommandWords.W0)) {
-            zeigeUhr()
+            if (input.runningTime() > voice_timeout) {
+                zeigeUhr()
+            }
             basic.pause(1000)
         } else {
+            voice_timeout = input.runningTime() + wachzeit * 1000
             Zeile0(Kommando_ID)
             macheEtwas(Kommando_ID)
             callicolor(Kommando_ID)
