@@ -26,7 +26,8 @@ function macheEtwas (id: number) {
 }
 function GitHub () {
     pins.comment(pins.pins_text("calliope-net/voice-callicolor-82"))
-    pins.comment(pins.pins_text("4 Module: CalliColor, I2C: Voice, OLED, EEPROM"))
+    pins.comment(pins.pins_text("5 Module: CalliColor (mit RTC),"))
+    pins.comment(pins.pins_text("I2C: Voice, OLED, EEPROM, RTC"))
     pins.comment(pins.pins_text("3 Erweiterungen laden: mkleinsb/pxt-callicolor;"))
     pins.comment(pins.pins_text("calliope-net/pins; calliope-net/matrix"))
     pins.comment(pins.pins_text("Anleitung:"))
