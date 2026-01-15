@@ -67,9 +67,13 @@ function callicolor (id: number) {
 function zeigeUhr () {
     pins.rtc_read()
     matrix.clearMatrix()
+    if (pins.keypadConnected()) {
+        matrix.writeTextEEPROM(0, 3, pins.rtc_set_key(pins.keypad_read()))
+    }
     matrix.writeClock(96, 32, 32, pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Stunde)), pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Minute)))
-    matrix.writeTextEEPROM(0, 0, pins.rtc_get_string(pins.rtc_eFormat.mmss), 10, 8, matrix.eTransparent.t, matrix.matrix_eFaktor(matrix.eFaktor.f2), matrix.matrix_eFaktor(matrix.eFaktor.f2))
-    matrix.writeTextEEPROM(1, 0, pins.rtc_get_string(pins.rtc_eFormat.ddd))
+    matrix.writeTextEEPROM(0, 0, pins.rtc_get_string(pins.rtc_eFormat.mmss), 12, 8, matrix.eTransparent.t, matrix.matrix_eFaktor(matrix.eFaktor.f2), matrix.matrix_eFaktor(matrix.eFaktor.f2))
+    matrix.writeTextEEPROM(4, 0, pins.rtc_get_int(pins.pins_rtc_eRegister(pins.rtc_eRegister.Stunde)), 16, 0, matrix.eTransparent.t, matrix.matrix_eFaktor(matrix.eFaktor.f3), matrix.matrix_eFaktor(matrix.eFaktor.f1))
+    matrix.writeTextEEPROM(6, 0, pins.rtc_get_string(pins.rtc_eFormat.ddd))
     matrix.writeTextEEPROM(7, 0, pins.rtc_get_string(pins.rtc_eFormat.ddMMyy))
     matrix.displayMatrix()
     pins.rtc_25led(pins.rtc_e25led.Zeit)
